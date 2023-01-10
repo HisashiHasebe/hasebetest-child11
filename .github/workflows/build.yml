@@ -16,7 +16,7 @@ jobs:
       - name: "Get branch name and sha"
         id: get_branch
         run: |
-          PR=$(curl -H "Authorization: token a3dd48ba3ff4b1a6b37a2c2f1227808f" https://hasebetest-child11.g.kuroco.app/direct/menu/github/?pr=${{ github.event.issue.pull_request.url }})
+          PR=$(curl -H "Authorization: token ad5dfa4778177b5781d61be019649111" https://hasebetest-child11.g.kuroco.app/direct/menu/github/?pr=${{ github.event.issue.pull_request.url }})
           echo "branch=$(echo $PR | jq -r '.ref')" >> $GITHUB_OUTPUT
           echo "sha=$(echo $PR | jq -r '.sha')" >> $GITHUB_OUTPUT
       - name: Checkout Repo
@@ -47,8 +47,8 @@ jobs:
         uses: diverta/workflow-webhook@v2
         env:
           webhook_url: "https://hasebetest-child11.g.kuroco.app/direct/menu/github/"
-          webhook_secret: "a3dd48ba3ff4b1a6b37a2c2f1227808f"
-          data: '{"single_zip":"0","domain":"child11.hasebetest.com","pr":"${{ github.event.issue.pull_request.url }}",  "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ steps.get_branch.outputs.sha }}"}'
+          webhook_secret: "ad5dfa4778177b5781d61be019649111"
+          data: '{"single_zip":"0","domain":"hasebetest-child11.g.kuroco-front.app","pr":"${{ github.event.issue.pull_request.url }}",  "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ steps.get_branch.outputs.sha }}"}'
           
   #for Push
   pushed_build:
@@ -80,5 +80,5 @@ jobs:
         uses: diverta/workflow-webhook@v2
         env:
           webhook_url: "https://hasebetest-child11.g.kuroco.app/direct/menu/github/"
-          webhook_secret: "a3dd48ba3ff4b1a6b37a2c2f1227808f"
-          data: '{"single_zip":"0","domain":"child11.hasebetest.com", "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ github.sha }}"}'
+          webhook_secret: "ad5dfa4778177b5781d61be019649111"
+          data: '{"single_zip":"0","domain":"hasebetest-child11.g.kuroco-front.app", "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ github.sha }}"}'
